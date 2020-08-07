@@ -1,4 +1,18 @@
-<h1> Hello, Welcome to Simple DevOps Project !!! i have changed this right now :)   </h1>
-<h2> Deploying on a kubernetes using ansible for Valaxy Technologies </h2>
-<h2> <b>*********testing *********</b> </h2>
-<h4> this will be another test for my job heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeey </h4>
+<html>
+<head><title>First JSP</title></head>
+<body>
+  <%
+    double num = Math.random();
+    if (num > 0.95) {
+  %>
+      <h2>You'll have a luck day!</h2><p>(<%= num %>)</p>
+  <%
+    } else {
+  %>
+      <h2>Well, life goes on ... </h2><p>(<%= num %>)</p>
+  <%
+    }
+  %>
+  <a href="<%= request.getRequestURI() %>"><h3>Try Again</h3></a>
+</body>
+</html>
