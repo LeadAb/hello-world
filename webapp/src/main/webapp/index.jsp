@@ -1,4 +1,5 @@
 <html>
+<h1>this is our new test for rolling update & imagepullpolicy </h1>
 <head><title>First JSP</title></head>
 <body>
   <%
