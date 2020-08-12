@@ -1,7 +1,7 @@
 <html>
 <h1>this is our new test for rolling update & imagepullpolicy </h1>
 <head><title>First JSP</title></head>
-<body style="background-color:red;">
+<body style="background-color:green;">
   <%
     double num = Math.random();
     if (num > 0.95) {
