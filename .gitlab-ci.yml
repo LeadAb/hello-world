@@ -6,3 +6,5 @@ variables:
 run:
   script:
     - echo "hello $NAME"
+    - curl 'https://api.github.com/repos/LeadAb/hello-world/statuses/$CI_COMMIT_SHA?access_token=e78d60ef865d106be51e594fd740fe90a75d6b1e' -H 'Content-Type: application/json'   -X POST -d '{\"state\": \"success\", \"description\": \"build_done_successfully\", \"target_url\": \"$CI_PIPELINE_URL\"}'
+
