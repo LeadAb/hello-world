@@ -2,9 +2,8 @@ image: curlimages/curl:7.73.0
 
 variables:
     NAME: "abdessamad"
-    CURL_CMD: ""https://api.github.com/repos/leadab/hello-world/statuses/$GIT_COMMIT?access_token=9fd09f3d42a262066a5aeb92b9ff76ea92c5b7c8""
-    CURL_REST: " -H "Content-Type: application/json" -X POST -d "{\"state\": \"pending\", \"description\": \"this still pending\", \"context\": \"Gitlab-ci\", \"target_url\": \"https://www.google.com\"}""
-
+    token: "68d15c84b176a9c0fb68cc54b446d1db507ad77b"
+   
 
 run:
   script:
@@ -13,4 +12,9 @@ run:
     
   after_script:
     - echo "the status of the job was $CI_JOB_STATUS"
-    - curl $CURL_CMD $CURL_REST
+    - >
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
+        -H "Content-Type: application/json" 
+        -X POST 
+        -d "{\"state\": \"success\", \"description\": \"ok ok ok ok\"}"
+    
