@@ -11,6 +11,7 @@ run:
     
   after_script:
     - echo "the status of the job was $CI_JOB_STATUS"
+    - echo "$CI_JOB_URL"
     - >
         curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json" 
