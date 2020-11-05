@@ -1,4 +1,4 @@
-image: curlimages/curl:7.73.0
+image: img:v10
 
 variables:
     NAME: "abdessamad"
@@ -10,11 +10,5 @@ run:
     - echo "this is SHA $CI_COMMIT_SHA"
     
   after_script:
-    - echo "the status of the job was $CI_JOB_STATUS"
-    - echo "$CI_JOB_URL"
-    - >
-        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
-        -H "Content-Type: application/json" 
-        -X POST 
-        -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab\", \"target_url\": \"$CI_JOB_URL\" }"
+    - ./status.sh $CI_COMMIT_SHA $token $CI_JOB_STATUS $CI_JOB_NAME $CI_JOB_URL
     
