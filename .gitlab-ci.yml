@@ -15,5 +15,5 @@ run:
         curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json" 
         -X POST 
-        -d "{\"state\": \"success\", \"description\": \"new creds\"}"
+        -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\"}"
     
