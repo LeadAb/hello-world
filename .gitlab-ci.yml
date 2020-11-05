@@ -1,7 +1,5 @@
 image: curlimages/curl:7.73.0
 
-variables:
-
 stages:
   - compile
   - analyse
@@ -44,7 +42,7 @@ test_code:
         -X POST 
         -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab\", \"target_url\": \"$CI_JOB_URL\" }"
         
- deploy_to_production:
+deploy_to_production:
   stage: deploy
   script:
     - echo "this is a deploy stage"
