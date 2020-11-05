@@ -1,19 +1,58 @@
 image: curlimages/curl:7.73.0
 
 variables:
-    NAME: "abdessamad"
-    STATE: >
+
+stages:
+  - compile
+  - analyse
+  - test
+  - deploy
+
+compile_code:
+  stage: compile
+  script:
+    - echo "this is a build stage"
+    
+  after_script:
+    - >
         curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json" 
         -X POST 
         -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab\", \"target_url\": \"$CI_JOB_URL\" }"
-   
-
-run:
+        
+analyse_code:
+  stage: analyse
   script:
-    - echo "hello $NAME"
-    - echo "this is SHA $CI_COMMIT_SHA"
+    - echo "this is an analyse stage"
     
   after_script:
-    - $STATE
+    - >
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
+        -H "Content-Type: application/json" 
+        -X POST 
+        -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab\", \"target_url\": \"$CI_JOB_URL\" }"
+        
+test_code:
+  stage: test
+  script:
+    - echo "this is a test stage"
+    
+  after_script:
+    - >
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
+        -H "Content-Type: application/json" 
+        -X POST 
+        -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab\", \"target_url\": \"$CI_JOB_URL\" }"
+        
+  deploy_to_production:
+  stage: deploy
+  script:
+    - echo "this is a deploy stage"
+    
+  after_script:
+    - >
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
+        -H "Content-Type: application/json" 
+        -X POST 
+        -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab\", \"target_url\": \"$CI_JOB_URL\" }"
     
