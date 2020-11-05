@@ -13,7 +13,7 @@ run:
   after_script:
     - echo "the status of the job was $CI_JOB_STATUS"
     - >
-        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=fa8900d80b4a0b3141dbd19bfa50783571bdcd91" 
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/e0de04e33ba3aa81c47304a841101f1f5525a725?access_token=fa8900d80b4a0b3141dbd19bfa50783571bdcd91" 
         -H "Content-Type: application/json" 
         -X POST 
         -d "{\"state\": \"success\", \"description\": \"new creds\"}"
