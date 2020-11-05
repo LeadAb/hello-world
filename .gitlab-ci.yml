@@ -6,5 +6,5 @@ variables:
 run:
   script:
     - echo "hello $NAME"
-    - sh "curl 'https://api.github.com/repos/LeadAb/hello-world/statuses/$CI_COMMIT_SHA?access_token=e78d60ef865d106be51e594fd740fe90a75d6b1e' -H 'Content-Type: application/json'   -X POST -d '{\"state\": \"success\", \"description\": \"build_done_successfully\", \"target_url\": \"$CI_PIPELINE_URL\"}'"
-
+  after_script:
+    - curl "https://api.github.com/repos/leadab/hello-world/statuses/$GIT_COMMIT?access_token=9fd09f3d42a262066a5aeb92b9ff76ea92c5b7c8" -H "Content-Type: application/json" -X POST -d "{\"state\":\"pending\",\"description\":\"this still pending\",\"context\":\"Gitlab-ci\",\"target_url\":\"https://www.google.com\"}"
