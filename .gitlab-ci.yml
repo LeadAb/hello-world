@@ -1,10 +1,11 @@
 image: curlimages/curl:7.73.0
 
 variables:
-   NAME: "abdessamad"
+    NAME: "abdessamad"
+
 
 run:
   script:
     - echo "hello $NAME"
   after_script:
-    - curl '"https://api.github.com/repos/leadab/hello-world/statuses/$GIT_COMMIT?access_token=9fd09f3d42a262066a5aeb92b9ff76ea92c5b7c8" -H "Content-Type: application/json" -X POST -d "{\"state\": \"pending\", \"description\": \"this still pending\", \"context\": \"Gitlab-ci\", \"target_url\": \"https://www.google.com\"}"'
+    - curl '"https://api.github.com/repos/leadab/hello-world/statuses/&CI_COMMIT_SHA?access_token=9fd09f3d42a262066a5aeb92b9ff76ea92c5b7c8" -H "Content-Type:application/json" -X POST -d "{\"state\":\"&CI_JOB_STATUS\",\"description\":\"this still pending\",\"context\":\"Gitlab-ci\",\"target_url\":\"https://www.google.com\"}"'
