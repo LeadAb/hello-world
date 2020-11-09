@@ -18,6 +18,7 @@ compile_code:
   stage: compile
   script:
     - echo "this is a build stage"
+    - echo &curl
     
   after_script:
     - $curl
