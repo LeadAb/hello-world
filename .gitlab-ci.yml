@@ -1,6 +1,4 @@
 image: curlimages/curl:7.73.0
-variables:
-   VARL: "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token"
    
 stages:
   - compile
@@ -17,7 +15,7 @@ compile_code:
     - echo $status_var
   after_script:
     - >
-        curl &VARL 
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json"  
         -X POST 
         -d $status_var
@@ -29,10 +27,10 @@ test_code:
     
   after_script:
     - >
-        curl &var_link 
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json"  
         -X POST 
-        -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab-$CI_JOB_STAGE\", \"target_url\": \"$CI_JOB_URL\" }"
+        -d $status_var
         
 send_status:
   stage: status
@@ -40,7 +38,7 @@ send_status:
   allow_failure: true
   script:
     - >
-        curl &var_link 
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json" 
         -X POST 
         -d "{\"state\": \"failure\", \"description\": \"The Pipeline's status is failed\", \"context\": \"Gitlab-final\", \"target_url\": \"$CI_JOB_URL\" }" 
