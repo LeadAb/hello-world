@@ -1,12 +1,5 @@
 image: curlimages/curl:7.73.0
 
-variables:
-  curl: >
-         curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
-         -H "Content-Type: application/json" 
-         -X POST 
-         -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab-$CI_JOB_STAGE\", \"target_url\": \"$CI_JOB_URL\" }"
-
 stages:
   - compile
   - analyse
@@ -18,10 +11,11 @@ compile_code:
   stage: compile
   script:
     - echo "this is a build stage"
-    - echo &curl
     
   after_script:
-    - $curl
+    - >
+        $status_var
+
     
 test_code:
   stage: test
