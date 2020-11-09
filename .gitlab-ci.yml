@@ -12,7 +12,7 @@ compile_code:
   stage: compile
   script:
     - echo "this is a build stage"
-    
+    - echo $status_var
   after_script:
     - >
         $status_var
