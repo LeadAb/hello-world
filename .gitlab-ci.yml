@@ -5,6 +5,7 @@ stages:
   - analyse
   - test
   - deploy
+  - status
 
 compile_code:
   stage: compile
