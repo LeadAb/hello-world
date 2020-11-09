@@ -14,7 +14,7 @@ compile_code:
     
   after_script:
     - >
-        curl -H 'Authorization: token $token' https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA 
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json" 
         -X POST 
         -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab-$CI_JOB_STAGE\", \"target_url\": \"$CI_JOB_URL\" }"
@@ -26,7 +26,7 @@ test_code:
     
   after_script:
     - >
-        curl -H 'Authorization: token $token' https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA 
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
         -H "Content-Type: application/json" 
         -X POST 
         -d "{\"state\": \"$CI_JOB_STATUS\", \"description\": \"The job $CI_JOB_NAME status is: $CI_JOB_STATUS\", \"context\": \"Gitlab-$CI_JOB_STAGE\", \"target_url\": \"$CI_JOB_URL\" }"
@@ -37,8 +37,7 @@ send_status:
   allow_failure: true
   script:
     - >
-        curl -H 'Authorization: token $token' https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA
-         
+        curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token"         
         -H "Content-Type: application/json" 
         -X POST 
         -d "{\"state\": \"failure\", \"description\": \"The Pipeline's status is failed\", \"context\": \"Gitlab-final\", \"target_url\": \"$CI_JOB_URL\" }" 
