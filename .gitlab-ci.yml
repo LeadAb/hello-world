@@ -1,6 +1,6 @@
 image: curlimages/curl:7.73.0
 variables:
-   var_link: "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token"
+   VARL: "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token"
    
 stages:
   - compile
@@ -17,7 +17,7 @@ compile_code:
     - echo $status_var
   after_script:
     - >
-        curl &var_link 
+        curl &VARL 
         -H "Content-Type: application/json"  
         -X POST 
         -d $status_var
