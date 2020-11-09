@@ -1,6 +1,6 @@
 image: curlimages/curl:7.73.0
 variables:
-   var_link: "curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token""
+   var_link: curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token"
    var_content: "Content-Type: application/json" 
        
 stages:
@@ -45,4 +45,3 @@ send_status:
         -H "&var_content"
         -X POST 
         -d "{\"state\": \"failure\", \"description\": \"The Pipeline's status is failed\", \"context\": \"Gitlab-final\", \"target_url\": \"$CI_JOB_URL\" }" 
- 
