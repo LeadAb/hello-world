@@ -22,7 +22,7 @@ compile_code:
 test_code:
   stage: test
   script:
-    - echo "this is a test stage"
+    - echoo "this is a test stage"
     
   after_script:
     - >
@@ -34,6 +34,7 @@ test_code:
 send_status:
   stage: status
   when: on_failure
+  allow_failure: true
   script:
     - >
         curl "https://api.github.com/repos/leadab/hello-world/statuses/$CI_COMMIT_SHA?access_token=$token" 
