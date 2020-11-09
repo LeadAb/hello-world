@@ -6,6 +6,7 @@ stages:
   - test
   - deploy
   - status
+  - final
 
 compile_code:
   stage: compile
